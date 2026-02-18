@@ -44,7 +44,7 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: rgba(5, 5, 8, 0.35);
+  background: rgba(5, 5, 8, 0.45);
 }
 
 .content {
@@ -192,7 +192,12 @@
   border-radius: inherit;
   pointer-events: none;
   mask-image: linear-gradient(to top, black 0%, black 40%, transparent 85%);
-  -webkit-mask-image: linear-gradient(to top, black 0%, black 40%, transparent 85%);
+  -webkit-mask-image: linear-gradient(
+    to top,
+    black 0%,
+    black 40%,
+    transparent 85%
+  );
 }
 
 .cardImageWrap {
