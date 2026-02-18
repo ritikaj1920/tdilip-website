@@ -1,0 +1,384 @@
+.journey {
+  background: radial-gradient(
+      ellipse at 10% 20%,
+      rgba(255, 153, 51, 0.04) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 90% 80%,
+      rgba(0, 102, 255, 0.03) 0%,
+      transparent 50%
+    ),
+    var(--bg-primary);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Diagonal saffron accent slash */
+.diagonalAccent {
+  position: absolute;
+  top: 0;
+  right: -10%;
+  width: 35%;
+  height: 100%;
+  background: linear-gradient(
+    165deg,
+    transparent 40%,
+    rgba(255, 153, 51, 0.025) 40%,
+    rgba(255, 153, 51, 0.025) 42%,
+    transparent 42%
+  );
+  pointer-events: none;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 24px;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+.titleGradient {
+  background: linear-gradient(
+    135deg,
+    var(--saffron),
+    var(--gold-bright),
+    var(--gold)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.intro {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 1.02rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* Stage: showcase + timeline rail side by side */
+.stage {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 56px;
+  align-items: start;
+  margin-bottom: 64px;
+}
+
+/* Left showcase panel */
+.showcase {
+  position: sticky;
+  top: 120px;
+}
+
+.showcaseInner {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.imageFrame {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.imageFrame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.showcaseInner:hover .imageFrame img {
+  transform: scale(1.04);
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5, 5, 8, 0.7) 0%, transparent 40%);
+}
+
+.imageYear {
+  position: absolute;
+  bottom: 16px;
+  left: 20px;
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+  letter-spacing: -0.02em;
+}
+
+.showcaseText {
+  padding: 28px 24px 24px;
+}
+
+.showcaseTitle {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.showcaseDesc {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Right timeline rail */
+.rail {
+  position: relative;
+  padding-left: 36px;
+}
+
+.railLine {
+  position: absolute;
+  left: 9px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--border);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.railProgress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(180deg, var(--gold), var(--accent));
+  border-radius: 1px;
+}
+
+.railNode {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 4px;
+  padding: 20px 18px 20px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast);
+  position: relative;
+  font-family: inherit;
+  color: inherit;
+}
+
+.railNode:hover {
+  background: rgba(212, 168, 83, 0.04);
+}
+
+.railNodeActive {
+  background: rgba(212, 168, 83, 0.06);
+}
+
+.railDot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s var(--ease-out);
+  margin-left: -36px;
+  background: var(--bg-primary);
+  position: relative;
+  z-index: 1;
+}
+
+.railDotInner {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: transparent;
+  transition: all 0.3s var(--ease-out);
+}
+
+.railNodeActive .railDot {
+  border-color: var(--gold);
+  box-shadow: 0 0 18px rgba(212, 168, 83, 0.35);
+}
+
+.railNodeActive .railDotInner {
+  background: var(--gold);
+}
+
+.railNodePast .railDot {
+  border-color: var(--gold-dark);
+}
+
+.railNodePast .railDotInner {
+  background: var(--gold-dark);
+}
+
+.railContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 1px;
+}
+
+.railYear {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.railNodeActive .railYear {
+  color: var(--gold);
+}
+
+.railTitle {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: -0.01em;
+  transition: color 0.3s;
+  line-height: 1.35;
+}
+
+.railNodeActive .railTitle {
+  color: var(--text-primary);
+}
+
+/* Narrative bottom */
+.narrative {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  border-top: 1px solid var(--border);
+  padding-top: 48px;
+}
+
+.narrative p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .stage {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .showcase {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    margin-bottom: 40px;
+  }
+
+  .narrative {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .imageYear {
+    font-size: 1.8rem;
+  }
+
+  .rail {
+    padding-left: 28px;
+  }
+
+  .railDot {
+    margin-left: -28px;
+  }
+
+  .stage {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    margin-bottom: 32px;
+  }
+
+  .intro {
+    font-size: 0.92rem;
+  }
+
+  .showcaseText {
+    padding: 20px 16px 16px;
+  }
+
+  .showcaseTitle {
+    font-size: 1.1rem;
+  }
+
+  .showcaseDesc {
+    font-size: 0.85rem;
+  }
+
+  .imageYear {
+    font-size: 1.5rem;
+    bottom: 12px;
+    left: 14px;
+  }
+
+  .rail {
+    padding-left: 24px;
+  }
+
+  .railDot {
+    margin-left: -24px;
+    width: 16px;
+    height: 16px;
+  }
+
+  .railNode {
+    padding: 14px 12px 14px 0;
+  }
+
+  .railTitle {
+    font-size: 0.85rem;
+  }
+
+  .narrative {
+    padding-top: 32px;
+    gap: 16px;
+  }
+
+  .narrative p {
+    font-size: 0.88rem;
+  }
+
+  .stage {
+    margin-bottom: 32px;
+  }
+}

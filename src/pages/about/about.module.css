@@ -1,0 +1,130 @@
+.journeySection { background: var(--bg-primary); }
+
+.journeyContent {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.journeyFirst {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  margin-bottom: 24px;
+}
+
+.journeyFirst::first-letter {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 600;
+  float: left;
+  line-height: 1;
+  margin-right: 10px;
+  margin-top: 6px;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.journeyPara {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.85;
+  margin-bottom: 20px;
+}
+
+/* Mission Vision */
+.mvSection { background: var(--bg-secondary); }
+
+.mvGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.mvCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px 32px;
+  position: relative;
+}
+
+.mvCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 32px;
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.mvTitle {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mvDesc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .mvGrid { grid-template-columns: 1fr; }
+  .mvCard { padding: 32px 24px; }
+
+  .journeyFirst {
+    font-size: 0.98rem;
+  }
+
+  .journeyFirst::first-letter {
+    font-size: 2.8rem;
+  }
+
+  .journeyPara {
+    font-size: 0.95rem;
+    line-height: 1.75;
+  }
+}
+
+@media (max-width: 480px) {
+  .mvCard {
+    padding: 24px 20px;
+  }
+
+  .mvTitle {
+    font-size: 1.05rem;
+    margin-bottom: 10px;
+  }
+
+  .mvDesc {
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+
+  .journeyFirst {
+    font-size: 0.92rem;
+    line-height: 1.8;
+  }
+
+  .journeyFirst::first-letter {
+    font-size: 2.4rem;
+    margin-right: 8px;
+  }
+
+  .journeyPara {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+}

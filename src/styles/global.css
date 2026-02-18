@@ -1,0 +1,191 @@
+@import './variables.css';
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Indian Tricolor Stripe */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--saffron) 0%, var(--saffron) 33.33%, #fff 33.33%, #fff 66.66%, var(--india-green) 66.66%, var(--india-green) 100%);
+  z-index: 10000;
+}
+
+/* Noise Texture Overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: var(--container-padding);
+}
+
+.section {
+  padding: var(--section-padding);
+  position: relative;
+}
+
+.section-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--saffron);
+  margin-bottom: 12px;
+  display: block;
+  text-align: center;
+}
+
+.section-title {
+  font-family: var(--font-serif, var(--font-display));
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1rem;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+.section-subtitle {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 3.5rem;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+.gold-text {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.accent-text {
+  background: linear-gradient(135deg, var(--accent), var(--accent-glow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-dark);
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 1024px) {
+  .section {
+    padding: 80px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 0;
+  }
+
+  .section-title {
+    font-size: clamp(1.6rem, 5vw, 2rem);
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 48px 0;
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+
+  .section-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+  }
+}

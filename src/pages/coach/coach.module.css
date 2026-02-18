@@ -1,0 +1,1090 @@
+/* ═══════════════════════════════════════════════════
+   Journey Bio — Cinematic biography + interactive timeline
+   ═══════════════════════════════════════════════════ */
+
+.journeySection {
+  background: radial-gradient(
+      ellipse at 10% 20%,
+      rgba(255, 153, 51, 0.05) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 90% 80%,
+      rgba(0, 102, 255, 0.03) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 50% 50%,
+      rgba(212, 168, 83, 0.015) 0%,
+      transparent 70%
+    ),
+    var(--bg-primary);
+  overflow: hidden;
+  position: relative;
+}
+
+.diagonalAccent {
+  position: absolute;
+  top: 0;
+  right: -10%;
+  width: 35%;
+  height: 100%;
+  background: linear-gradient(
+    165deg,
+    transparent 40%,
+    rgba(255, 153, 51, 0.025) 40%,
+    rgba(255, 153, 51, 0.025) 42%,
+    transparent 42%
+  );
+  pointer-events: none;
+}
+
+/* Subtle grid texture for depth */
+.gridTexture {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      rgba(212, 168, 83, 0.02) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(212, 168, 83, 0.02) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at 50% 30%, black 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(
+    ellipse at 50% 30%,
+    black 0%,
+    transparent 70%
+  );
+}
+
+.journeyHeader {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.journeyTitle {
+  font-family: var(--font-serif, var(--font-display));
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 0;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+.journeyTitleGold {
+  background: linear-gradient(
+    135deg,
+    var(--saffron),
+    var(--gold-bright),
+    var(--gold)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Bio prose */
+.bioBlock {
+  max-width: 760px;
+  margin: 0 auto 48px;
+}
+
+.bioFirst {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  margin-bottom: 24px;
+}
+
+.bioFirst::first-letter {
+  font-family: var(--font-serif, var(--font-display));
+  font-size: 3.8rem;
+  font-weight: 600;
+  float: left;
+  line-height: 1;
+  margin-right: 12px;
+  margin-top: 4px;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bioPara {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.85;
+  margin-bottom: 20px;
+}
+
+/* Chapter divider */
+.chapterDivider {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 56px;
+  transform-origin: left center;
+}
+
+.chapterDivider::before,
+.chapterDivider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--border),
+    rgba(212, 168, 83, 0.2),
+    var(--border)
+  );
+}
+
+.chapterLabel {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--gold-dark);
+  white-space: nowrap;
+}
+
+/* Interactive Timeline Stage */
+.stage {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 56px;
+  align-items: start;
+  margin-bottom: 64px;
+}
+
+/* Showcase */
+.showcase {
+  position: sticky;
+  top: 120px;
+}
+
+.showcaseInner {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color 0.4s;
+}
+
+.showcaseInner:hover {
+  border-color: rgba(212, 168, 83, 0.2);
+}
+
+.imageFrame {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.imageFrame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.showcaseInner:hover .imageFrame img {
+  transform: scale(1.04);
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(5, 5, 8, 0.75) 0%,
+    rgba(5, 5, 8, 0.1) 35%,
+    transparent 60%
+  );
+}
+
+.imageYear {
+  position: absolute;
+  bottom: 16px;
+  left: 20px;
+  font-family: var(--font-serif, var(--font-display));
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.7);
+  letter-spacing: -0.03em;
+}
+
+.imageStep {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.5);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+}
+
+.showcaseText {
+  padding: 28px 24px 24px;
+}
+
+.showcaseTitle {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.showcaseDesc {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Timeline rail */
+.rail {
+  position: relative;
+  padding-left: 36px;
+}
+
+.railLine {
+  position: absolute;
+  left: 9px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--border);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.railProgress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(180deg, var(--gold), var(--accent));
+  border-radius: 1px;
+}
+
+.railNode {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 4px;
+  padding: 24px 20px 24px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  border-radius: var(--radius-md);
+  transition: background 0.2s var(--ease-out);
+  position: relative;
+  font-family: inherit;
+  color: inherit;
+}
+
+/* .railNode:hover {
+  background: rgba(212, 168, 83, 0.04);
+} */
+
+/* .railNodeActive {
+  background: rgba(212, 168, 83, 0.06);
+} */
+
+.railDot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s var(--ease-out);
+  margin-left: -36px;
+  background: var(--bg-primary);
+  position: relative;
+  z-index: 1;
+}
+
+.railDotInner {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: transparent;
+  transition: all 0.3s var(--ease-out);
+}
+
+.railNodeActive .railDot {
+  border-color: var(--gold);
+  box-shadow: 0 0 18px rgba(212, 168, 83, 0.35);
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+.railNodeActive .railDotInner {
+  background: var(--gold);
+}
+
+.railNodePast .railDot {
+  border-color: var(--gold-dark);
+}
+
+.railNodePast .railDotInner {
+  background: var(--gold-dark);
+}
+
+@keyframes dotPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 18px rgba(212, 168, 83, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(212, 168, 83, 0.55);
+  }
+}
+
+.railContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 1px;
+}
+
+.railYear {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.railNodeActive .railYear {
+  color: var(--gold);
+}
+
+.railLabel {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: -0.01em;
+  transition: color 0.3s;
+  line-height: 1.35;
+}
+
+.railNodeActive .railLabel {
+  color: var(--text-primary);
+}
+
+/* Narrative coda */
+.narrative {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  border-top: 1px solid var(--border);
+  padding-top: 48px;
+}
+
+.narrative p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* ═══════════════════════════════════════════════════
+   Philosophy
+   ═══════════════════════════════════════════════════ */
+
+.philSection {
+  background: radial-gradient(
+      ellipse at 80% 20%,
+      rgba(212, 168, 83, 0.04) 0%,
+      transparent 60%
+    ),
+    var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.philGlow {
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(212, 168, 83, 0.06) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.philQuote {
+  max-width: 640px;
+  margin: 0 auto 56px;
+  text-align: center;
+  font-family: var(--font-serif, var(--font-display));
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  position: relative;
+  padding: 0 24px;
+}
+
+.philQuoteMark {
+  font-family: var(--font-serif, Georgia), serif;
+  font-size: 4rem;
+  line-height: 0;
+  position: absolute;
+  top: -8px;
+  left: -4px;
+  color: var(--gold-dark);
+  opacity: 0.5;
+}
+
+.pillarGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.pillarCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 32px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.35s var(--ease-out),
+    box-shadow 0.35s var(--ease-out);
+}
+
+/* Gold top accent bar */
+.pillarCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+
+.pillarCard:hover {
+  border-color: rgba(212, 168, 83, 0.2);
+  box-shadow: var(--shadow-gold);
+}
+
+.pillarCard:hover::before {
+  opacity: 1;
+}
+
+.pillarIdx {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  opacity: 0.4;
+}
+
+.pillarIcon {
+  margin-bottom: 16px;
+  color: var(--gold-dark);
+  transition: color 0.35s var(--ease-out);
+}
+
+.pillarIcon svg {
+  display: block;
+  margin: 0 auto;
+}
+
+.pillarCard:hover .pillarIcon {
+  color: var(--gold);
+}
+
+.pillarTitle {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.pillarDesc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ═══════════════════════════════════════════════════
+   Mission & Vision
+   ═══════════════════════════════════════════════════ */
+
+.mvSection {
+  background: radial-gradient(
+      ellipse at 50% 50%,
+      rgba(212, 168, 83, 0.03) 0%,
+      transparent 60%
+    ),
+    var(--bg-primary);
+}
+
+.mvGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.mvCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
+}
+
+.mvCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 32px;
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.mvCard:hover {
+  border-color: rgba(212, 168, 83, 0.2);
+  box-shadow: var(--shadow-gold);
+}
+
+.mvTitle {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mvDesc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* ═══════════════════════════════════════════════════
+   Achievements
+   ═══════════════════════════════════════════════════ */
+
+.achieveSection {
+  background: radial-gradient(
+      ellipse at 20% 80%,
+      rgba(212, 168, 83, 0.03) 0%,
+      transparent 50%
+    ),
+    var(--bg-primary);
+}
+
+.trophySection {
+  margin-bottom: 48px;
+}
+
+.trophySection:last-child {
+  margin-bottom: 0;
+}
+
+.trophyTier {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--gold);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tierDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.tierDot[data-tier="gold"] {
+  background: var(--gold);
+  box-shadow: 0 0 8px rgba(212, 168, 83, 0.5);
+}
+
+.tierDot[data-tier="silver"] {
+  background: #a0a0b8;
+  box-shadow: 0 0 8px rgba(160, 160, 184, 0.3);
+}
+
+.tierDot[data-tier="milestone"] {
+  background: var(--accent);
+  box-shadow: 0 0 8px rgba(0, 102, 255, 0.3);
+}
+
+.tierCount {
+  margin-left: auto;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0;
+}
+
+.trophyGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.trophyCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+}
+
+.trophyCard:hover {
+  border-color: var(--border-light);
+}
+
+.trophyIconWrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-muted);
+  transition: border-color 0.3s, background 0.3s, color 0.3s;
+}
+
+.trophyIconWrap[data-tier="gold"] {
+  color: var(--gold);
+  border-color: rgba(212, 168, 83, 0.2);
+  background: rgba(212, 168, 83, 0.06);
+}
+
+.trophyIconWrap[data-tier="silver"] {
+  color: #a0a0b8;
+  border-color: rgba(160, 160, 184, 0.15);
+  background: rgba(160, 160, 184, 0.04);
+}
+
+.trophyIconWrap[data-tier="milestone"] {
+  color: var(--accent);
+  border-color: rgba(0, 102, 255, 0.15);
+  background: rgba(0, 102, 255, 0.04);
+}
+
+.goldCard {
+  border-color: rgba(212, 168, 83, 0.15);
+}
+
+.goldCard:hover {
+  border-color: rgba(212, 168, 83, 0.35);
+  box-shadow: var(--shadow-gold);
+}
+
+.silverCard {
+  border-color: rgba(160, 160, 180, 0.12);
+}
+
+.silverCard:hover {
+  border-color: rgba(160, 160, 180, 0.25);
+}
+
+.trophyCard h4 {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.trophyCard p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+/* ═══════════════════════════════════════════════════
+   Teams
+   ═══════════════════════════════════════════════════ */
+
+.teamsSection {
+  background: radial-gradient(
+      ellipse at 70% 30%,
+      rgba(0, 102, 255, 0.03) 0%,
+      transparent 50%
+    ),
+    var(--bg-secondary);
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.teamCategory {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  transition: border-color 0.35s;
+}
+
+.teamCategory:hover {
+  border-color: rgba(212, 168, 83, 0.15);
+}
+
+.catHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.catIdx {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--gold-dark);
+  opacity: 0.5;
+  letter-spacing: 0.05em;
+}
+
+.catTitle {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--gold);
+}
+
+.teamBadges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.teamBadge {
+  display: inline-block;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all 0.25s var(--ease-out);
+}
+
+.teamBadge:hover {
+  border-color: var(--gold-dark);
+  color: var(--gold);
+  background: rgba(212, 168, 83, 0.04);
+}
+
+/* ═══════════════════════════════════════════════════
+   Recognition
+   ═══════════════════════════════════════════════════ */
+
+.recogSection {
+  background: radial-gradient(
+      ellipse at 30% 70%,
+      rgba(255, 153, 51, 0.03) 0%,
+      transparent 50%
+    ),
+    var(--bg-primary);
+}
+
+.quoteGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+}
+
+.quoteCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 36px 32px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.35s;
+}
+
+.quoteCard:hover {
+  border-color: rgba(212, 168, 83, 0.2);
+}
+
+/* Left gold accent bar */
+.quoteCard::before {
+  content: "";
+  position: absolute;
+  top: 32px;
+  left: 0;
+  width: 3px;
+  height: 40px;
+  background: linear-gradient(180deg, var(--gold), var(--gold-dark));
+  border-radius: 0 2px 2px 0;
+}
+
+.quoteOpenMark {
+  font-family: var(--font-serif, Georgia), serif;
+  font-size: 3.5rem;
+  line-height: 1;
+  display: block;
+  color: var(--gold-dark);
+  opacity: 0.3;
+  margin-bottom: -8px;
+  margin-top: -8px;
+}
+
+.quoteText {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  font-style: italic;
+  margin-bottom: 24px;
+}
+
+.quoteCite {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.citeAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.citeAvatar span {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--bg-primary);
+}
+
+.quoteCite strong {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: block;
+}
+
+.citeRole {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 1px;
+}
+
+/* ═══════════════════════════════════════════════════
+   Testimonials
+   ═══════════════════════════════════════════════════ */
+
+.testSection {
+  background: radial-gradient(
+      ellipse at 60% 40%,
+      rgba(0, 102, 255, 0.025) 0%,
+      transparent 60%
+    ),
+    var(--bg-secondary);
+}
+
+.testGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.testCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  cursor: pointer;
+  transition: all 0.35s var(--ease-out);
+  position: relative;
+}
+
+.testCard:hover {
+  border-color: rgba(212, 168, 83, 0.15);
+}
+
+.testActive {
+  border-color: rgba(212, 168, 83, 0.3);
+  box-shadow: var(--shadow-gold);
+}
+
+.testQuoteMark {
+  font-family: var(--font-serif, Georgia), serif;
+  font-size: 2.4rem;
+  line-height: 1;
+  display: block;
+  color: var(--gold-dark);
+  opacity: 0.25;
+  margin-bottom: 4px;
+  margin-top: -4px;
+}
+
+.testText {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.testAuthor {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.testAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.testAvatar span {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.testAuthor strong {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .stage {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .showcase {
+    position: static;
+  }
+
+  .pillarGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .narrative {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .imageYear {
+    font-size: 1.8rem;
+  }
+
+  .pillarGrid {
+    grid-template-columns: 1fr;
+  }
+  .mvGrid {
+    grid-template-columns: 1fr;
+  }
+  .mvCard {
+    padding: 32px 24px;
+  }
+  .teamGrid {
+    grid-template-columns: 1fr;
+  }
+  .quoteGrid {
+    grid-template-columns: 1fr;
+  }
+  .testGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .philQuote {
+    font-size: 1.05rem;
+    padding: 0 16px;
+  }
+
+  .philQuoteMark {
+    font-size: 3rem;
+    top: -4px;
+    left: -2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chapterDivider {
+    gap: 12px;
+  }
+
+  .chapterLabel {
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+  }
+}

@@ -1,0 +1,312 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.videoBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 8, 0.4) 0%,
+    rgba(5, 5, 8, 0.3) 40%,
+    rgba(5, 5, 8, 0.7) 70%,
+    rgba(5, 5, 8, 0.95) 100%
+  );
+  z-index: 1;
+}
+
+.gradientBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(to top, var(--bg-primary), transparent);
+  z-index: 2;
+}
+
+/* Dark overlay for content readability */
+.grain {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: rgba(5, 5, 8, 0.35);
+}
+
+.content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+  padding-top: 200px;
+  padding-bottom: 80px;
+}
+
+.textBlock {
+  flex: 1;
+  max-width: 640px;
+}
+
+.tag {
+  display: inline-block;
+  background: rgba(212, 168, 83, 0.12);
+  color: var(--gold);
+  padding: 6px 18px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 1px solid rgba(212, 168, 83, 0.2);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.05;
+  margin-bottom: 20px;
+  letter-spacing: -0.03em;
+}
+
+.nameGold {
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  background: linear-gradient(
+    135deg,
+    var(--gold-light),
+    var(--gold),
+    var(--gold-dark)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.role {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  color: var(--text-secondary);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.description {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 28px;
+  max-width: 520px;
+}
+
+.quoteWrap {
+  display: grid;
+  margin-bottom: 36px;
+}
+
+.quote {
+  grid-area: 1 / 1;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--gold);
+  border-left: 2px solid var(--gold-dark);
+  padding-left: 16px;
+}
+
+.actions {
+  display: flex;
+  gap: 14px;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  padding: 13px 32px;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+  color: #050508;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.5px;
+  transition: all var(--transition-normal);
+}
+
+.btnPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(212, 168, 83, 0.3);
+}
+
+.btnOutline {
+  display: inline-flex;
+  align-items: center;
+  padding: 13px 32px;
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.88rem;
+  letter-spacing: 0.5px;
+  transition: all var(--transition-normal);
+}
+
+.btnOutline:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+
+/* Profile Card */
+.profileCard {
+  background: rgba(14, 14, 22, 0.75);
+  backdrop-filter: blur(20px);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  min-width: 280px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+
+.profileCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--border);
+  border-radius: inherit;
+  pointer-events: none;
+  mask-image: linear-gradient(to top, black 0%, black 40%, transparent 85%);
+  -webkit-mask-image: linear-gradient(to top, black 0%, black 40%, transparent 85%);
+}
+
+.cardImageWrap {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.profileCard:hover .cardImage {
+  transform: scale(1.05);
+}
+
+.cardInfo {
+  padding: 24px;
+  text-align: center;
+}
+
+.profileName {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.profileHandle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+}
+
+.profileStats {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat strong {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.stat span {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.followBtn {
+  display: inline-block;
+  width: 100%;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-glow));
+  color: #fff;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: all var(--transition-normal);
+}
+
+.followBtn:hover {
+  box-shadow: var(--shadow-accent);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 968px) {
+  .content {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 140px;
+    padding-bottom: 60px;
+  }
+
+  .profileCard {
+    min-width: auto;
+    width: 100%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding-top: 120px;
+    padding-bottom: 40px;
+  }
+
+  .profileCard {
+    max-width: none;
+    width: 100%;
+  }
+
+  .actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btnPrimary,
+  .btnOutline {
+    justify-content: center;
+    text-align: center;
+  }
+}

@@ -1,0 +1,66 @@
+:root {
+  /* Backgrounds */
+  --bg-primary: #050508;
+  --bg-secondary: #0a0a10;
+  --bg-card: #0e0e16;
+  --bg-card-hover: #14141e;
+
+  /* Accent */
+  --accent: #0066FF;
+  --accent-glow: #00C8FF;
+  --accent-dim: #003d99;
+
+  /* Gold / Prestige */
+  --gold: #D4A853;
+  --gold-light: #f0d68a;
+  --gold-dark: #a07c30;
+  --gold-bright: #FFD700;
+
+  /* India Tricolor */
+  --saffron: #FF9933;
+  --india-green: #138808;
+
+  /* Text */
+  --text-primary: #f0f0f5;
+  --text-secondary: #a0a0b8;
+  --text-muted: #606078;
+
+  /* Borders */
+  --border: #1a1a28;
+  --border-light: #2a2a3a;
+
+  /* Typography */
+  --font-display: 'Clash Display', sans-serif;
+  --font-body: 'Satoshi', sans-serif;
+  --font-serif: 'Zodiak', 'Georgia', serif;
+
+  /* Spacing */
+  --section-padding: 100px 0;
+  --container-width: 1200px;
+  --container-padding: 0 24px;
+
+  /* Easing */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+
+  /* Transitions */
+  --transition-fast: 0.2s var(--ease-out);
+  --transition-normal: 0.35s var(--ease-out);
+  --transition-slow: 0.6s var(--ease-out);
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 16px 64px rgba(0, 0, 0, 0.6);
+  --shadow-gold: 0 4px 30px rgba(212, 168, 83, 0.15);
+  --shadow-accent: 0 4px 30px rgba(0, 102, 255, 0.15);
+}

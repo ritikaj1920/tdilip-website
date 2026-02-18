@@ -1,0 +1,170 @@
+.partnersSection {
+  background: var(--bg-primary);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+.card:hover {
+  border-color: rgba(212, 168, 83, 0.25);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-gold);
+}
+
+.cardLink,
+.cardInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 32px;
+  text-align: center;
+  gap: 16px;
+  color: inherit;
+}
+
+.cardLink {
+  text-decoration: none;
+}
+
+/* Logo area */
+.logoWrap {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all var(--transition-normal);
+}
+
+.card:hover .logoWrap {
+  border-color: rgba(212, 168, 83, 0.15);
+  background: rgba(212, 168, 83, 0.04);
+}
+
+.logo {
+  max-height: 40px;
+  max-width: 60px;
+  object-fit: contain;
+  opacity: 0.6;
+  filter: grayscale(100%) brightness(1.5);
+  transition: all var(--transition-normal);
+}
+
+.card:hover .logo {
+  opacity: 0.9;
+  filter: grayscale(0%) brightness(1);
+}
+
+.initial {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--gold);
+  opacity: 0.5;
+  transition: opacity var(--transition-normal);
+}
+
+.card:hover .initial {
+  opacity: 0.8;
+}
+
+.partnerName {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.card:hover .partnerName {
+  color: var(--gold);
+}
+
+.partnerDesc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Visit link indicator */
+.visitLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  transform: translateY(4px);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: 4px;
+}
+
+.card:hover .visitLink {
+  transform: translateY(0);
+}
+
+.visitLink svg {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .visitLink svg {
+  transform: translate(2px, -2px);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .cardLink,
+  .cardInner {
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    gap: 12px;
+  }
+
+  .cardLink,
+  .cardInner {
+    padding: 24px 20px;
+    gap: 12px;
+  }
+
+  .logoWrap {
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+  }
+
+  .partnerName {
+    font-size: 1rem;
+  }
+
+  .partnerDesc {
+    font-size: 0.82rem;
+  }
+}
