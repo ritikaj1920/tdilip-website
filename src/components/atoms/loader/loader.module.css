@@ -53,28 +53,32 @@
 }
 
 .logo {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   object-fit: contain;
   position: relative;
 }
 
-.text {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  font-weight: 600;
-  letter-spacing: 6px;
-  color: var(--text-primary);
-  margin-top: 8px;
+.brandName {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-top: 12px;
 }
 
-.subtext {
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 500;
+.brandSub {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 4px;
-  color: var(--gold);
+  letter-spacing: 0.3em;
+  color: var(--text-muted);
+  margin-top: 2px;
 }
 
 @keyframes spin {

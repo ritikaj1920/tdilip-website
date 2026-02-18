@@ -35,17 +35,37 @@
 }
 
 .logoImg {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   object-fit: cover;
 }
 
-.logoText {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
+.brandText {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  line-height: 1;
+}
+
+.brandName {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
   font-weight: 600;
-  letter-spacing: 3px;
+  letter-spacing: 0.02em;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.brandSub {
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
   color: var(--text-primary);
+  opacity: 0.6;
 }
 
 .nav {
@@ -188,13 +208,17 @@
     font-size: 1rem;
   }
 
-  .logoText {
+  .brandName {
     font-size: 1rem;
-    letter-spacing: 2px;
+  }
+
+  .brandSub {
+    font-size: 0.52rem;
+    letter-spacing: 0.2em;
   }
 
   .logoImg {
-    width: 30px;
-    height: 30px;
+    width: 36px;
+    height: 36px;
   }
 }

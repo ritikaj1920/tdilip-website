@@ -25,8 +25,8 @@ export default function Loader({ isLoading }: LoaderProps) {
                 className={styles.logo}
               />
             </div>
-            <span className={styles.text}>T. DILIP</span>
-            <span className={styles.subtext}>Fielding Coach</span>
+            <span className={styles.brandName}>Transforming Dreams</span>
+            <span className={styles.brandSub}>T. Dilip</span>
           </div>
         </motion.div>
       )}
