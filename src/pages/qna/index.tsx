@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import SEO from "../../components/atoms/seo";
 import PageHero from "../../components/molecules/page-hero";
 import { useScrollAnimation } from "../../hooks/useScrollAnimation";
 import { faqCategories } from "../../data/faq";
@@ -73,6 +74,26 @@ export default function QnAPage() {
 
   return (
     <>
+      <SEO
+        title="Questions & Answers"
+        path="/qna"
+        description="Frequently asked questions about T. Dilip's fielding coaching methods, career journey, and the art of cricket fielding. Get insights into coaching philosophy and techniques."
+        image="/assets/tdilip-01-cafe-candid.jpg"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          'mainEntity': faqCategories.flatMap((cat) =>
+            cat.items.map((item) => ({
+              '@type': 'Question',
+              'name': item.question,
+              'acceptedAnswer': {
+                '@type': 'Answer',
+                'text': item.answer,
+              },
+            }))
+          ),
+        }}
+      />
       <PageHero
         title="Questions & Answers"
         subtitle="Common questions about fielding, coaching, and the journey"

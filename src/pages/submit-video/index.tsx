@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import SEO from '../../components/atoms/seo';
 import PageHero from '../../components/molecules/page-hero';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import styles from './submit-video.module.css';
@@ -194,6 +195,12 @@ export default function SubmitVideoPage() {
 
   return (
     <>
+      <SEO
+        title="Submit Video for Coaching Analysis"
+        path="/submit-video"
+        description="Submit your cricket practice videos and receive personalized coaching insights from T. Dilip's team. Get expert analysis on batting, bowling, fielding, and wicket-keeping."
+        image="/assets/tdilip-07-dharamsala-drill.jpg"
+      />
       <PageHero
         title="Submit Video"
         subtitle="Share your cricket videos and receive personalized coaching solutions"

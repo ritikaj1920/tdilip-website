@@ -25,30 +25,32 @@ export default function App() {
   return (
     <BrowserRouter>
       <Loader isLoading={loading} />
-      {!loading && (
-        <>
-          <ScrollToTop />
-          <Header />
-          <main>
-            <Suspense fallback={null}>
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/coach" element={<CoachPage />} />
-                <Route path="/gallery" element={<GalleryPage />} />
-                <Route path="/partners" element={<PartnersPage />} />
-                <Route path="/qna" element={<QnAPage />} />
-                <Route path="/submit-video" element={<SubmitVideoPage />} />
-                <Route path="/helping-hands" element={<HelpingHandsPage />} />
-                <Route
-                  path="/helping-hands/:slug"
-                  element={<BlogDetailPage />}
-                />
-              </Routes>
-            </Suspense>
-          </main>
-          <Footer />
-        </>
-      )}
+      {/* Always render content in the DOM for SEO crawlers; hide visually during splash */}
+      <div
+        aria-hidden={loading}
+        style={loading ? { opacity: 0, pointerEvents: 'none', position: 'absolute' } : undefined}
+      >
+        <ScrollToTop />
+        <Header />
+        <main>
+          <Suspense fallback={null}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/coach" element={<CoachPage />} />
+              <Route path="/gallery" element={<GalleryPage />} />
+              <Route path="/partners" element={<PartnersPage />} />
+              <Route path="/qna" element={<QnAPage />} />
+              <Route path="/submit-video" element={<SubmitVideoPage />} />
+              <Route path="/helping-hands" element={<HelpingHandsPage />} />
+              <Route
+                path="/helping-hands/:slug"
+                element={<BlogDetailPage />}
+              />
+            </Routes>
+          </Suspense>
+        </main>
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 }

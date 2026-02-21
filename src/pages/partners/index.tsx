@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import SEO from '../../components/atoms/seo';
 import PageHero from '../../components/molecules/page-hero';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { partners } from '../../data/partners';
@@ -9,6 +10,12 @@ export default function PartnersPage() {
 
   return (
     <>
+      <SEO
+        title="Partners"
+        path="/partners"
+        description="Industry-leading brands and associations supporting T. Dilip's commitment to excellence in cricket coaching and fielding development."
+        image="/assets/tdilip-09-team-huddle.jpg"
+      />
       <PageHero
         title="Partners"
         subtitle="T. Dilip's journey has been supported by industry-leading brands that share his commitment to excellence in cricket."

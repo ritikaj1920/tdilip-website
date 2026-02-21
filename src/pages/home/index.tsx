@@ -1,3 +1,4 @@
+import SEO from '../../components/atoms/seo';
 import Hero from '../../components/organisms/hero';
 import Stats from '../../components/organisms/stats';
 import About from '../../components/organisms/about';
@@ -12,6 +13,10 @@ import Partners from '../../components/organisms/partners';
 export default function HomePage() {
   return (
     <>
+      <SEO
+        path="/"
+        description="Official website of T. Dilip (Tirumala Dilip Kumar), Fielding Coach of the Indian Senior Men's Cricket Team. Four-time ICC trophy winner. Explore his journey, achievements, gallery, and Helping Hands initiative."
+      />
       <Hero />
       <Stats />
       <AchievementTicker />

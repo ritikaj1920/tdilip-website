@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import SEO from '../../components/atoms/seo';
 import PageHero from '../../components/molecules/page-hero';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import {
@@ -232,6 +233,12 @@ function Board() {
 export default function HelpingHandsPage() {
   return (
     <>
+      <SEO
+        title="Helping Hands – Community Initiative"
+        path="/helping-hands"
+        description="Helping Hands by T. Dilip — empowering sportspersons through mentorship, guidance, and community support. Read stories of impact, community camps, and peer learning programs."
+        image="/assets/tdilip-03-mentoring.jpg"
+      />
       <PageHero
         title="Helping Hands"
         subtitle="Empowering sportspersons through mentorship, guidance, and community support"

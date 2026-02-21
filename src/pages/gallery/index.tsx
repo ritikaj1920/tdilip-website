@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import SEO from '../../components/atoms/seo';
 import styles from './gallery.module.css';
 
 const galleryImages = [
@@ -40,6 +41,12 @@ export default function GalleryPage() {
 
   return (
     <>
+      <SEO
+        title="Gallery"
+        path="/gallery"
+        description="Photo and video gallery of T. Dilip — training sessions, match days, trophy celebrations, and behind-the-scenes moments from his journey with Indian cricket."
+        image="/assets/tdilip-05-t20wc-trophy.jpg"
+      />
       <section className={`section ${styles.galleryPage}`}>
         <div className="container">
           <span className="section-label">Gallery</span>

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import SEO from '../../components/atoms/seo';
 import PageHero from '../../components/molecules/page-hero';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { cricketJourney, missionData } from '../../data/aboutContent';
@@ -67,6 +68,12 @@ function MissionVision() {
 export default function AboutPage() {
   return (
     <>
+      <SEO
+        title="About T. Dilip"
+        path="/about"
+        description="Born in Hyderabad, Tirumala Dilip Kumar rose from modest beginnings to become India's Fielding Coach. Learn about his cricket journey, mission, and vision for transforming fielding standards."
+        image="/assets/tdilip-04-tunnel-walk.jpg"
+      />
       <PageHero
         title="About"
         subtitle="The Story Behind Transforming Dreams"

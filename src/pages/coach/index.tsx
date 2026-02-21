@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import SEO from "../../components/atoms/seo";
 import PageHero from "../../components/molecules/page-hero";
 import { useScrollAnimation } from "../../hooks/useScrollAnimation";
 import { bioParagraphs } from "../../data/biography";
@@ -652,6 +653,12 @@ function MissionVision() {
 export default function CoachPage() {
   return (
     <>
+      <SEO
+        title="Coach – The Story of T. Dilip"
+        path="/coach"
+        description="The complete story of T. Dilip — from Hyderabad's local grounds to Fielding Coach of India. Biography, coaching philosophy, career milestones, achievements, and teams coached."
+        image="/assets/tdilip-10-fielding-drill.jpg"
+      />
       <PageHero
         title="Coach"
         subtitle="The story of T. Dilip — from Hyderabad's local grounds to the pinnacle of world cricket coaching"

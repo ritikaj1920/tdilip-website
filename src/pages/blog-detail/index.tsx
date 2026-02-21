@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import SEO from '../../components/atoms/seo';
 import { blogArticles } from '../../data/helpingHands';
 import blogArticleContent from '../../data/blogContent';
 import styles from './blog-detail.module.css';
@@ -8,6 +9,10 @@ export default function BlogDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const article = blogArticles.find((a) => a.slug === slug);
   const paragraphs = slug ? blogArticleContent[slug] : undefined;
+
+  const seoDescription = paragraphs
+    ? paragraphs[0].slice(0, 155) + '...'
+    : article?.excerpt ?? '';
 
   if (!article || !paragraphs) {
     return (
@@ -40,6 +45,23 @@ export default function BlogDetailPage() {
 
   return (
     <>
+      <SEO
+        title={article.title}
+        path={`/helping-hands/${slug}`}
+        description={seoDescription}
+        image={article.image}
+        type="article"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          'headline': article.title,
+          'image': article.image,
+          'datePublished': article.date,
+          'author': { '@type': 'Person', 'name': 'T. Dilip' },
+          'publisher': { '@type': 'Person', 'name': 'T. Dilip' },
+          'description': seoDescription,
+        }}
+      />
       <div className={styles.heroWrap}>
         <img
           src={article.image}
